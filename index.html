@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="uk">
+    <meta charset="UTF-8">
+
+    <title>Шрифт Брайля</title>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Перекладач шрифтом Брайля"/>
+  <!--  <meta property="og:description" content="Легко ."/> -->
+    <meta property="og:url" content="http://braille.ukrzen.in.ua/"/>
+    <meta property="og:image" content="http://braille.ukrzen.in.ua/assets/preview.jpg?v2"/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="700"/>
+    <meta property="og:site_name" content="Перекладач шрифтом Брайля"/>
+    <meta name="twitter:title" content="Перекладач шрифтом Брайля"/>
+  <!--  <meta name="twitter:description" content="Зіграйте на легендарному інструменті на нашому сайті."/>-->
+    <meta name="twitter:domain" content="http://braille.ukrzen.in.ua/"/>
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            -webkit-transform:translate3d(0,0,0);
+
+            overflow: hidden;
+            padding:0px;
+            margin:0px;
+            background:url(assets/paper.jpg);
+            background-size:cover;
+
+        }
+        .letter
+        {
+            width:48px;
+            height:80px;
+            padding:4px;
+            display: inline-block;
+
+
+
+        }
+        .letter .point
+        {
+       /*     background-image: url(data:image/png;base64,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);
+       */
+            background-size:100% 100%;
+            width:16px;
+            height:16px;
+            background-color:#444;
+            opacity: 0.2;
+            transition: all 1s ease;
+            border-radius: 100%;
+            transform-origin: 50% 50%;
+            display: inline-block;
+            transform: scale(0.5);
+            box-shadow:inset 0px 0px 10px 0px rgba(255,255,255,0.01);
+        }
+        .letter[data-points*='1'] .point:nth-child(1),
+        .letter[data-points*='2'] .point:nth-child(2),
+        .letter[data-points*='3'] .point:nth-child(3),
+        .letter[data-points*='4'] .point:nth-child(4),
+        .letter[data-points*='5'] .point:nth-child(5),
+        .letter[data-points*='6'] .point:nth-child(6)
+        {
+           transform: scale(0.8);
+           box-shadow:none;
+           opacity: 1;
+
+        }
+        .source-word
+        {
+            font-size:40px;
+            font-family: 'Bad Script';
+            width:100vw;
+            height:40vh;
+            background:transparent;
+            border:none;
+            outline:none !important;
+            display: block;
+            float:left;
+            color:#292074;
+            padding:20px;
+
+
+        }
+        .source-word::-moz-selection { background-color: rgba(255,255,255,0.3);}
+        .source-word::selection { background-color: rgba(255,255,255,0.3);}
+
+        .letters
+        {
+
+            float:left;
+            width:100vw;
+            overflow:auto;
+            height:60vh;
+            position: relative;
+            padding:20px;
+
+        }
+        .letters .bg
+        {
+            opacity: 0.6;
+            background:url(assets/paper-white.jpg);
+            background-size:cover;
+            position: absolute;
+            left:0px;
+            right:0px;
+            top:0px;
+            bottom:0px;
+        }
+        div.body > .content
+        {
+
+            width:100vw;
+            height:100vh;
+        }
+        footer a
+        {
+            text-decoration:none;
+            color:#292074;
+        }
+        footer
+        {
+            width: 100%;
+            color: #292074;
+            font-family: 'Bad Script';
+            position: fixed;
+            bottom: 25px;
+            padding-left: 3px;
+            padding-right: 3px;
+            text-align: right;
+            font-size:16px;
+            opacity: 0.6;
+            right: 20px;
+        }
+        .share-buttons {
+            float: left;
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            opacity: 0.3;
+            -webkit-filter: saturate(20%);
+        }
+        @media screen and (max-width: 640px){
+            footer
+            {
+                display:none;
+            }
+            .share-buttons
+            {
+                display:none;
+            }
+
+        }
+        .twitter-follow-button
+        {
+            display: inline-block;
+            width:            14px;
+            height:           14px;
+            background-size: 100% 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpCNTQyOThEQjE4MjA2ODExODIyQTlENTYzRUI5RjNBOSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo3RDY5QzEzRUQ2QUUxMUUyQTJEOEM0ODE0NzFGMURFRiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2QzRDRUZGMkQ2QUUxMUUyQTJEOEM0ODE0NzFGMURFRiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjU0Mjk4REIxODIwNjgxMTgyMkE5RDU2M0VCOUYzQTkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjU0Mjk4REIxODIwNjgxMTgyMkE5RDU2M0VCOUYzQTkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz425lj3AAAB40lEQVR42oxTy04UQRQ99Wh7mDFBIsSFCQsWkPALRjYmJibGfyBuXPkTrt27kp3fQHDLBk3c6cbEEIgSIojIONPd1VXXU/2wZyCQ6U511+Oec899lHr0YfhKab0JQHMIZnsUR5AQtqxS6gUXizdZywRqioVYy79rN7zURkZ1ICfdfhyaH9sxOavKYk6StFpZBlF4auP8Fo1yTuYThdWBRhkE+5lASDYiY+NArPFukJOAdnhy1+BXCWyfljiPYLp6ft/i2ZKtrL/8Dfj0J+DdkUPGcxOdwvsk0tEx1m9rPLhjsEi2nVOPtYHCwwXzX+86leyd+yqsNgobxagm/oMMeMwEvFxO8HTJYEzWQYfHBY3ekzh67zU1YxV0qEpIlkK6Kq7M6SvVOGIOMl/Xu320GJPHzEYFu2eeKsK15dxj/GelQE8w6GDTIZrSfR0J3n53OM6vgg/pfeekjt9MKdAm7iHhWOvX1b7w0yoOCH697/CN6lI13VC2nUTIPZ5uLFj0KednIZXcj8x6TFxUl+q6kXCZQDXt+nkYcDguKsNIOObnN0lck/XL4JqADd2SFDQ8brqstY2gnr7uSillg3OJSXuVBjsZ0wwX0ueZtfnJjzem19/kWkNmvM6KryD4bLT1T4ABAPIzyWkiQRgWAAAAAElFTkSuQmCC');
+
+        }
+        .fb-button
+        {
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAeFBMVEVJbalKbahKbqlRdKxigbRjgrRzjrxzj7x9l8GFncSYrM6Zrc6br8+kttOvv9mxwNm2xNy3xd3F0ePI0+TJ0+XO2OfR2unS2unX3+vb4u3d4+7e5O/e5e/g5vDl6vLo7PPv8vfz9fn09vn3+Pv4+vz5+vz8/f3///8ZV1FxAAAAAnRSTlP+/qap3hAAAAB/SURBVHgB3dO3EsMgDMZxICVK7wrpCS68/xtaePCE0J3PLP6v328QA0qZZFoZoeHBdP/+u9+JBcvShywHZpVvu3FgF9bauTMHLO3XSeLIJ4GNEcC6P5gDfAkcAGARBQ/fdZcASuASBUfEgsYPIm7lV4wavPKDcMMqw88SgBZAAz/kGwqvOeglAAAAAElFTkSuQmCC);
+            display: inline-block;
+            width:            14px;
+            height:           14px;
+            background-size: 100% 100%;
+        }
+    </style>
+    <script>
+        ALPHABET={
+            ua:{"а":"1","б":"12","ц":"14","д":"145","е":"15","є":"345","ф":"124","г":"1245","ґ":"12456","х":"125","и":"24","ж":"245","к":"13","л":"123","м":"134","н":"1345","о":"135","п":"1234","ч":"12345","р":"1235","с":"234","т":"2345","у":"136","щ":"1346","і":"13456","ї":"1456","й":"12346","з":"1356","в":"2456","ь":"23456","ш":"156","ю":"1256","я":"1246",".":"46",",":"2","?":"26",";":"23","":"3","!":"235","\"":"236","\"":"356","-":"36","/":"34","↓":"3456","|":"2356"},
+            en:{"a":"1","b":"12","c":"14","d":"145","e":"15","f":"124","g":"1245","h":"125","i":"24","j":"245","k":"13","l":"123","m":"134","n":"1345","o":"135","p":"1234","q":"12345","r":"1235","s":"234","t":"2345","u":"136","v":"1236","x":"1346","y":"13456","z":"1356","w":"2456",".":"46",",":"2","?":"26",";":"23","":"6","!":"235","«":"236","»":"356","-":"36","/":"34","↓":"3456","|":"2356","(":"126",")":"345"}
+        };
+        LETTER_TEMPLATE="  <div class=\"letter\" >\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n        </div>"
+        function translate(word)
+        {
+            word = word.trim();
+            var brailPoints = word.split("").map(function(it){
+                    it=it.toLocaleLowerCase();
+                return ALPHABET["ua"][it] || ALPHABET["en"][it] || "";
+            });
+            var lastNumber=brailPoints.length-1;
+            brailPoints.forEach(function(points,number){
+               var letter = $(".letters .content .letter:nth-of-type(" + (number + 1) +  ")") ;
+               if(letter.length==0)
+               {
+                   letter =  $(LETTER_TEMPLATE).appendTo(".letters .content");
+               }
+                setTimeout(function(){
+                    letter.attr("data-points",points);
+                },1);
+
+            });
+            var allLetters= $(".letters .content .letter");
+            for(var i=brailPoints.length - 1; i < allLetters.length;i++){
+                $(allLetters[i]).attr("data-points","");
+            }
+
+        }
+        $(function () {
+            $(".source-word").on("keyup",function(){
+               translate($(this).val());
+
+                ga('send', {
+                    'hitType': 'event',          // Required.
+                    'eventCategory': 'Main',   // Required.
+                    'eventAction':'Process' ,      // Required.
+                    'eventLabel':  $(this).val(),
+                    'eventValue': 1
+                });
+
+
+            });
+            translate( $(".source-word").val());
+            $(".source-word").focus()[0].select();
+        });
+    </script>
+</head>
+<body>
+<div class="body">
+    <div class="content">
+        <textarea class="source-word" autofocus>Напишіть щось!</textarea>
+
+
+
+        <div class="letters">
+            <div class="bg"></div>
+            <div class="content">
+
+            </div>
+        </div>
+    </div>
+    <footer>
+
+        &nbsp; Львів - 2016. <a class="email" href="mailto:h.ukrzen+brail@gmail.com" target="_blank"> Пишіть нам</a> <a
+            href="https://twitter.com/ukrzen" target="_blank" class="twitter-follow-button email"
+            data-show-count="false"></a> <a href="https://www.facebook.com/pages/Ukrzen-In-Ua/643709062402196"
+                                            target="_blank" class="fb-button email" data-show-count="false"></a>
+    </footer>
+    <div class="share-buttons">
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_googleplus_large' displayText='Google +'></span>
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_vkontakte_large' displayText='Vkontakte'></span>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-57748128-8', 'auto', {'allowLinker': true});
+    ga('require', 'linker');
+    ga('require', 'displayfeatures');
+
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({
+    publisher: "464d90da-aa5d-4761-b8ef-21e1b0bbd8f3",
+    doNotHash: false,
+    doNotCopy: false,
+    hashAddressBar: false
+});
+</script>
+</body>
+</html>
