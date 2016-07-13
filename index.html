@@ -3,25 +3,26 @@
 <head lang="uk">
     <meta charset="UTF-8">
 
-    <title>Шрифт Брайля</title>
+    <title>Перекладач на шрифт Брайля (онлайн)</title>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Перекладач шрифтом Брайля"/>
+    <meta property="og:title" content="Перекладач на шрифт Брайля"/>
   <!--  <meta property="og:description" content="Легко ."/> -->
     <meta property="og:url" content="http://braille.ukrzen.in.ua/"/>
     <meta property="og:image" content="http://braille.ukrzen.in.ua/assets/preview.jpg?v2"/>
     <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="700"/>
-    <meta property="og:site_name" content="Перекладач шрифтом Брайля"/>
-    <meta name="twitter:title" content="Перекладач шрифтом Брайля"/>
+    <meta property="og:site_name" content="Перекладач на шрифт Брайля"/>
+    <meta name="twitter:title" content="Перекладач на шрифт Брайля"/>
   <!--  <meta name="twitter:description" content="Зіграйте на легендарному інструменті на нашому сайті."/>-->
     <meta name="twitter:domain" content="http://braille.ukrzen.in.ua/"/>
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
+            font-family: 'Bad Script', cursive !important;
         }
         body{
             -webkit-transform:translate3d(0,0,0);
@@ -39,7 +40,7 @@
             height:80px;
             padding:4px;
             display: inline-block;
-
+            margin-right: 16px;
 
 
         }
@@ -58,12 +59,13 @@
             display: inline-block;
             transform: scale(0.5);
             box-shadow:inset 0px 0px 10px 0px rgba(255,255,255,0.01);
+
         }
         .letter[data-points*='1'] .point:nth-child(1),
-        .letter[data-points*='2'] .point:nth-child(2),
-        .letter[data-points*='3'] .point:nth-child(3),
-        .letter[data-points*='4'] .point:nth-child(4),
-        .letter[data-points*='5'] .point:nth-child(5),
+        .letter[data-points*='2'] .point:nth-child(3),
+        .letter[data-points*='3'] .point:nth-child(5),
+        .letter[data-points*='4'] .point:nth-child(2),
+        .letter[data-points*='5'] .point:nth-child(4),
         .letter[data-points*='6'] .point:nth-child(6)
         {
            transform: scale(0.8);
@@ -127,7 +129,7 @@
         {
             width: 100%;
             color: #292074;
-            font-family: 'Bad Script';
+
             position: fixed;
             bottom: 25px;
             padding-left: 3px;
@@ -182,8 +184,9 @@
         LETTER_TEMPLATE="  <div class=\"letter\" >\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n        </div>"
         function translate(word)
         {
+            var letters = word.split("");
             word = word.trim();
-            var brailPoints = word.split("").map(function(it){
+            var brailPoints = letters.map(function(it){
                     it=it.toLocaleLowerCase();
                 return ALPHABET["ua"][it] || ALPHABET["en"][it] || "";
             });
@@ -194,14 +197,20 @@
                {
                    letter =  $(LETTER_TEMPLATE).appendTo(".letters .content");
                }
+
                 setTimeout(function(){
                     letter.attr("data-points",points);
+
+                    letter.attr("title",letters[number]);
+                    letter.attr("alt",letters[number]);
                 },1);
 
             });
             var allLetters= $(".letters .content .letter");
             for(var i=brailPoints.length - 1; i < allLetters.length;i++){
                 $(allLetters[i]).attr("data-points","");
+                $(allLetters[i]).attr("title","");
+                $(allLetters[i]).attr("alt","");
             }
 
         }
