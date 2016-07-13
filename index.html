@@ -187,7 +187,8 @@
         {
             var letters = word.split("");
             word = word.trim();
-            var brailPoints=[]
+            var brailPoints=[];
+            var wasDigit =false
             letters.forEach(function(it){
                 var itSource = it;
                     it=it.toLocaleLowerCase();
@@ -197,7 +198,16 @@
                 }
                 if("0123456789".indexOf(itSource)!=-1)
                 {
-                    brailPoints.push("3456");
+                    if(!wasDigit)
+                    {
+                       wasDigit =true;
+                       brailPoints.push("3456");
+                    }
+
+                }
+                else
+                {
+                    wasDigit =false;
                 }
                 brailPoints.push(ALPHABET["ua"][it] || ALPHABET["en"][it] || ALPHABET["num"][it] || "");
             });
