@@ -36,18 +36,21 @@
         }
         .letter
         {
-            width:48px;
-            height:80px;
+            width:50px;
+            height:100px;
             padding:4px;
             display: inline-block;
             margin-right: 16px;
-
+            position: relative;
+            user-select: all;
+            overflow: hidden;
 
         }
         .letter .point
         {
        /*     background-image: url(data:image/png;base64,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);
        */
+
             background-size:100% 100%;
             width:16px;
             height:16px;
@@ -59,6 +62,7 @@
             display: inline-block;
             transform: scale(0.5);
             box-shadow:inset 0px 0px 10px 0px rgba(255,255,255,0.01);
+            margin-right: 4px;
 
         }
         .letter[data-points*='1'] .point:nth-child(1),
@@ -72,6 +76,16 @@
            box-shadow:none;
            opacity: 1;
 
+        }
+        .letter .text{
+            color: rgba(0,0,0,0);
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            user-select: all;
+            font-size:120px;
         }
         .source-word
         {
@@ -175,14 +189,81 @@
             height:           14px;
             background-size: 100% 100%;
         }
+
     </style>
     <script>
+        FONT_MAPPING={
+            0:"⠀",
+            1:"⠁",
+            2:"⠂",
+            12:"⠃",
+            3:"⠄",
+            23:"⠆",
+            123:"⠇",
+            4:"⠈",
+            14:"⠉",
+            24:"⠊",
+            124:"⠋",
+            34:"⠌",
+            134:"⠍",
+            234:"⠎",
+            1234:"⠏",
+            5:"⠐",
+            15:"⠑",
+            25:"⠒",
+            125:"⠓",
+            35:"⠔",
+            135:"⠕",
+            235:"⠖",
+            1235:"⠗",
+            45:"⠘",
+            145:"⠙",
+            245:"⠚",
+            1245:"⠛",
+            345:"⠜",
+            1345:"⠝",
+            2345:"⠞",
+            12345:"⠟",
+            6:"⠠",
+            16:"⠡",
+            26:"⠢",
+            126:"⠣",
+            36:"⠤",
+            136:"⠥",
+            236:"⠦",
+            1236:"⠧",
+            46:"⠨",
+            146:"⠩",
+            246:"⠪",
+            1246:"⠫",
+            346:"⠬",
+            1346:"⠭",
+            2346:"⠮",
+            12346:"⠯",
+            56:"⠰",
+            156:"⠱",
+            256:"⠲",
+            1256:"⠳",
+            356:"⠴",
+            1356:"⠵",
+            2356:"⠶",
+            12356:"⠷",
+            456:"⠸",
+            1456:"⠹",
+            2456:"⠺",
+            12456:"⠻",
+            3456:"⠼",
+            13456:"⠽",
+            23456:"⠾",
+            123456:"⠿"
+
+        }
         ALPHABET={
             ua:{"а":"1","б":"12","ц":"14","д":"145","е":"15","є":"345","ф":"124","г":"1245","ґ":"12456","х":"125","и":"24","ж":"245","к":"13","л":"123","м":"134","н":"1345","о":"135","п":"1234","ч":"12345","р":"1235","с":"234","т":"2345","у":"136","щ":"1346","і":"13456","ї":"1456","й":"12346","з":"1356","в":"2456","ь":"23456","ш":"156","ю":"1256","я":"1246",".":"46",",":"2","?":"26",";":"23","":"3","!":"235","\"":"236","\"":"356","-":"36","/":"34","↓":"3456","|":"2356","↑":"6"},
             en:{"a":"1","b":"12","c":"14","d":"145","e":"15","f":"124","g":"1245","h":"125","i":"24","j":"245","k":"13","l":"123","m":"134","n":"1345","o":"135","p":"1234","q":"12345","r":"1235","s":"234","t":"2345","u":"136","v":"1236","x":"1346","y":"13456","z":"1356","w":"2456",".":"46",",":"2","?":"26",";":"23","":"6","!":"235","«":"236","»":"356","-":"36","/":"34","↓":"3456","|":"2356","(":"126",")":"345"},
             num:{"1":"1","2":"12","3":"14","4":"145","5":"15","6":"124","7":"1245","8":"125","9":"24","0":"245"}
         };
-        LETTER_TEMPLATE="  <div class=\"letter\" >\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n            <div class=\"point\"></div>\n        </div>"
+        LETTER_TEMPLATE="  <div class=\"letter\" ><div class=\"point\"></div><div class=\"point\"></div><div class=\"point\"></div><div class=\"point\"></div><div class=\"point\"></div><div class=\"point\"></div><div class='text'></div></div>"
         function translate(word)
         {
             var letters = word.split("");
@@ -225,6 +306,8 @@
 
                     letter.attr("title",letters[number]);
                     letter.attr("alt",letters[number]);
+                    letter.find(".text").text(FONT_MAPPING[parseInt(points)]||"⠀");
+
                 },1);
 
             });
@@ -271,7 +354,7 @@
     </div>
     <footer>
 
-        &nbsp; Львів - 2016. <a class="email" href="mailto:h.ukrzen+brail@gmail.com" target="_blank"> Пишіть нам</a> <a
+        &nbsp; Львів - 2019. <a class="email" href="mailto:h.ukrzen+brail@gmail.com" target="_blank"> Пишіть нам</a> <a
             href="https://twitter.com/ukrzen" target="_blank" class="twitter-follow-button email"
             data-show-count="false"></a> <a href="https://www.facebook.com/pages/Ukrzen-In-Ua/643709062402196"
                                             target="_blank" class="fb-button email" data-show-count="false"></a>
