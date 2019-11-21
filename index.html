@@ -12,6 +12,7 @@
     <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="700"/>
+
     <meta property="og:site_name" content="Перекладач на шрифт Брайля"/>
     <meta name="twitter:title" content="Перекладач на шрифт Брайля"/>
   <!--  <meta name="twitter:description" content="Зіграйте на легендарному інструменті на нашому сайті."/>-->
@@ -19,6 +20,8 @@
     <link rel="icon" href="/favicon.png" type="image/png" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -198,6 +201,7 @@
             2:"⠂",
             12:"⠃",
             3:"⠄",
+            13:"⠅",
             23:"⠆",
             123:"⠇",
             4:"⠈",
@@ -293,13 +297,14 @@
                 brailPoints.push(ALPHABET["ua"][it] || ALPHABET["en"][it] || ALPHABET["num"][it] || "");
             });
             var lastNumber=brailPoints.length-1;
+            var text=[];
             brailPoints.forEach(function(points,number){
                var letter = $(".letters .content .letter:nth-of-type(" + (number + 1) +  ")") ;
                if(letter.length==0)
                {
                    letter =  $(LETTER_TEMPLATE).appendTo(".letters .content");
                }
-
+                text.push(FONT_MAPPING[parseInt(points)]||"⠀");
 
                 setTimeout(function(){
                     letter.attr("data-points",points);
@@ -311,6 +316,7 @@
                 },1);
 
             });
+            $(".letters").attr("data-clipboard-text",text.join(""));
             var allLetters= $(".letters .content .letter");
             for(var i=brailPoints.length - 1; i < allLetters.length;i++){
                 $(allLetters[i]).attr("data-points","");
@@ -336,6 +342,7 @@
             });
             translate( $(".source-word").val());
             $(".source-word").focus()[0].select();
+            new ClipboardJS('.letters');
         });
     </script>
 </head>
@@ -385,6 +392,7 @@
     ga('require', 'displayfeatures');
 
     ga('send', 'pageview');
+
 </script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({
