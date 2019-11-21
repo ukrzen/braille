@@ -278,18 +278,13 @@
             letters.forEach(function(it){
                 var itSource = it;
                     it=it.toLocaleLowerCase();
-                if(it!=itSource)
-                {
-                    brailPoints.push("6");
-                    text.push(FONT_MAPPING[6]);
-                }
                 if("0123456789".indexOf(itSource)!=-1)
                 {
                     if(!wasDigit)
                     {
-                       wasDigit =true;
-                       brailPoints.push("3456");
-                       text.push(FONT_MAPPING[3456]);
+                        wasDigit =true;
+                        brailPoints.push("3456");
+                        text.push(FONT_MAPPING[3456]);
                     }
 
                 }
@@ -302,6 +297,12 @@
 
                     wasDigit =false;
                 }
+                if(it!=itSource)
+                {
+                    brailPoints.push("6");
+                    text.push(FONT_MAPPING[6]);
+                }
+
                 const letter = ALPHABET["ua"][it] || ALPHABET["en"][it] || ALPHABET["num"][it] || "";
                 brailPoints.push(letter);
                 text.push(FONT_MAPPING[parseInt(letter)]||"⠀");
