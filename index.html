@@ -295,7 +295,11 @@
                 }
                 else
                 {
-                    brailPoints.push("23");
+                    if(wasDigit) {brailPoints.push("23");
+                        brailPoints.push("23");
+                        text.push(FONT_MAPPING[23]);
+                    }
+
                     wasDigit =false;
                 }
                 const letter = ALPHABET["ua"][it] || ALPHABET["en"][it] || ALPHABET["num"][it] || "";
